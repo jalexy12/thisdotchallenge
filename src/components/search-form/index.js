@@ -6,6 +6,7 @@ function SearchForm({ onSubmit, disabled }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    setSearchError("");
 
     if (!searchTerm) {
       setSearchError("It looks like your search was empty. Please make sure your search contains at least one character");

@@ -7,7 +7,7 @@ import ApiQuery from '../../api-query';
 const DEFAULT_PER_PAGE = 20;
 const githubQuery = new ApiQuery();
 
-function GithubSearch() {
+function GithubSearch({ cache }) {
   const [loading, setLoading]             = useState(false);
   const [resultError, setResultError]     = useState(null);
   const [results, setResults]             = useState(null);
@@ -27,17 +27,27 @@ function GithubSearch() {
   }
 
   function search(searchTerm, page, perPage) {
-    githubQuery.search(searchTerm, page, perPage)
-      .then(r => {
-        setResults(r.data);
-        setResultError(null);
-        setLoading(false);
-      })
-      .catch(e => {
-        setResults(null);
-        setResultError(e.response.data);
-        setLoading(false);
-      })
+    const query = githubQuery.formulateQuery(searchTerm, page, perPage);
+    const cached = cache.get(query);
+
+    if (cached) {
+      setResults(cached);
+      setResultError(null);
+      setLoading(false);
+    } else {
+      githubQuery.search(query)
+        .then(r => {
+          setResults(r.data);
+          setResultError(null);
+          setLoading(false);
+          cache.set(query, r.data)
+        })
+        .catch(e => {
+          setResults(null);
+          setResultError(e.response.data);
+          setLoading(false);
+        })
+    }
   }
 
   return (

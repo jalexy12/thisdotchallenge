@@ -7,7 +7,7 @@ class ApiQuery {
     this.query    = '';
   }
 
-  search(query, page = 1, perPage = 100) {
+  formulateQuery(query, page = 1, perPage = 100) {
     if (!query || typeof query !== 'string') {
       throw new Error('Invalid query provided');
     }
@@ -17,7 +17,11 @@ class ApiQuery {
     if (perPage) { baseQuery = baseQuery + `&per_page=${perPage}`; }
     if (page)    { baseQuery = baseQuery + `&page=${page}`; }
 
-    return axios.get(baseQuery);
+    return baseQuery;
+  }
+
+  search(formulatedQuery) {
+    return axios.get(formulatedQuery);
   }
 }
 
