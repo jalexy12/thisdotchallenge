@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function SearchForm({ onSubmit }) {
+function SearchForm({ onSubmit, disabled }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchError, setSearchError] = useState("")
 
@@ -23,7 +23,12 @@ function SearchForm({ onSubmit }) {
         onChange={e => setSearchTerm(e.target.value)}
         placeholder="Seach for a user (or more)"
       />
-      <button type="submit">Search!</button>
+      <button
+        disabled={disabled}
+        type="submit"
+      >
+        Search!
+      </button>
       {searchError && (
         <p>{searchError}</p>
       )}
