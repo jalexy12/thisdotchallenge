@@ -1,6 +1,7 @@
 import React from 'react';
 import { PacmanLoader } from 'react-spinners';
 import usePagination from '../../hooks/use-pagination';
+import BasicPagination from '../basic-pagination';
 import UserCard from '../user-card';
 
 function ResultsList({
@@ -28,16 +29,12 @@ function ResultsList({
         <PacmanLoader /> :
         results.items.map(user => <UserCard key={user.id} user={user} />)
       }
-      <div>
-        {currentPage > 1 && (
-          <button onClick={previousPage}>&lt;</button>
-        )}
-        {currentPage}..{totalPages}&nbsp;
-        {currentPage < totalPages && (
-          <button onClick={nextPage}>&gt;</button>
-        )}
-
-      </div>
+      <BasicPagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        nextPage={nextPage}
+        previousPage={previousPage}
+      />
     </div>
   );
 }
