@@ -7,12 +7,17 @@ class ApiQuery {
     this.query    = '';
   }
 
-  search(query) {
+  search(query, page = 1, perPage = 100) {
     if (!query || typeof query !== 'string') {
       throw new Error('Invalid query provided');
     }
 
-    return axios.get(`${this.baseUrl}/${this.resource}?q=${query}`)
+    let baseQuery = `${this.baseUrl}/${this.resource}?q=${query}`;
+
+    if (perPage) { baseQuery = baseQuery + `&per_page=${perPage}`; }
+    if (page)    { baseQuery = baseQuery + `&page=${page}`; }
+
+    return axios.get(baseQuery);
   }
 }
 
