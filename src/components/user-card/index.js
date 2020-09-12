@@ -5,7 +5,7 @@ import githubQuery from '../../api-query';
 import AdditionalUserDetails from './additional-user-details';
 import styles from './styles.module.css';
 
-function UserCard({ user }) {
+function UserCard({ user, incQueryCount }) {
   const [loading, setLoading]                               = useState(false);
   const [additionalDetails, setAdditionalDetails]           = useState(null);
   const [additionalDetailsError, setAdditionalDetailsError] = useState(null);
@@ -14,6 +14,7 @@ function UserCard({ user }) {
 
   function fetchAdditionalDetails() {
     const userDetailsQuery = githubQuery.formulateUserDetailsQuery(user);
+    incQueryCount();
     setLoading(true);
 
     githubQuery

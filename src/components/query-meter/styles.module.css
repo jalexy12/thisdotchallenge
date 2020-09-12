@@ -1,0 +1,60 @@
+.queryMeter {
+  background-color: #122541;
+  color:rgb(194, 206, 224);
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  padding: 2rem;
+  width: 100%;
+}
+
+.queryMeter > div {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-right: 1rem;
+}
+
+.queryMeter small {
+  color: white;
+  font-size: 0.7rem;
+}
+
+.queryMeter progress {
+  margin: 0.5rem 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.queryMeter progress::-webkit-progress-bar {
+  background-color: white;
+}
+
+.queryMeter progress.red::-webkit-progress-value {
+  background-color: red;
+}
+
+.queryMeter progress.yellow::-webkit-progress-value {
+  background-color: yellow;
+}
+
+.wrappedProgress {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+span.red {
+  color: red;
+}
+
+span.yellow {
+  color: yellow;
+}
+
+span.green {
+  color: green;
+}
+
+

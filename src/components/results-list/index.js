@@ -10,7 +10,8 @@ function ResultsList({
   results,
   perPage,
   fetchPrevious,
-  fetchNext
+  fetchNext,
+  incQueryCount
 }) {
   const {
     currentPage,
@@ -20,7 +21,7 @@ function ResultsList({
   } = usePagination(results.total_count, perPage, fetchPrevious, fetchNext)
 
   if (results.items && results.items.length === 0) {
-    return <div>Sorry, it looks like there's no results with that term. Try another term!</div>
+    return <strong className={styles.noResults}>Sorry, it looks like there's no results with that term. Try another term!</strong>
   }
 
   return (
@@ -35,7 +36,7 @@ function ResultsList({
       <div className={styles.resultsList}>
         {loading ?
           <PacmanLoader color="#FFFF00" /> :
-          results.items.map(user => <UserCard key={user.id} user={user} />)
+          results.items.map(user => <UserCard key={user.id} user={user} incQueryCount={incQueryCount} />)
         }
       </div>
     </div>

@@ -12,3 +12,8 @@
   justify-content: space-around;
   padding: 2rem 1rem;
 }
+
+.noResults {
+  margin-top: 1rem;
+  font-weight: bold;
+}
