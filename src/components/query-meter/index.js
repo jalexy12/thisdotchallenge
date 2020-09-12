@@ -48,7 +48,7 @@ function QueryMeter({ rateLimitData: { search, core } }) {
         <WrappedProgress remaining={searchRemaining} limit={search.limit} />
       </div>
       <div>
-        <span>User Details Requests Used</span>
+        <span>User Requests Used</span>
         <small>Reset in {coreTime} minutes</small>
         <WrappedProgress remaining={coreRemaining} limit={core.limit} />
       </div>

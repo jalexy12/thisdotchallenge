@@ -4,9 +4,16 @@
   box-shadow: 0 0px 7px 0px #777;
   display: flex;
   flex-direction: column;
+  margin: 1rem 1rem 0;
   padding: 2rem 0;
 }
 
 .loaderContainer {
   padding: 2rem 0;
+}
+
+@media only screen and (max-width: 450px) {
+  .mainContainer {
+    margin: 1rem 0;
+  }
 }
