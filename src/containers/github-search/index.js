@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { PacmanLoader } from 'react-spinners';
 import ResultsList from '../../components/results-list';
 import SearchForm from '../../components/search-form';
-import ApiQuery from '../../api-query';
+import githubQuery from '../../api-query';
 import styles from './styles.module.css';
 
 const DEFAULT_PER_PAGE = 20;
-const githubQuery = new ApiQuery();
 
 function GithubSearch({ cache }) {
   const [loading, setLoading]             = useState(false);

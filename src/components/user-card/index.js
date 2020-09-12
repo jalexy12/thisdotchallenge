@@ -1,18 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
+import githubQuery from '../../api-query';
+import AdditionalUserDetails from './additional-user-details';
 import styles from './styles.module.css';
 
-// avatar_url: "https://avatars3.githubusercontent.com/u/32080604?v=4"
-// followers_url: "https://api.github.com/users/testerting/followers"
-// following_url: "https://api.github.com/users/testerting/following{/other_user}"
-// html_url: "https://github.com/testerting"
-// id: 32080604
-// login: "testerting"
-// organizations_url: "https://api.github.com/users/testerting/orgs"
-// repos_url: "https://api.github.com/users/testerting/repos"
-// starred_url: "https://api.github.com/users/testerting/starred{/owner}{/repo}"
-// url: "https://api.github.com/users/testerting"
-
 function UserCard({ user }) {
+  const [loading, setLoading]                               = useState(false);
+  const [additionalDetails, setAdditionalDetails]           = useState(null);
+  const [additionalDetailsError, setAdditionalDetailsError] = useState(null);
+
+  function fetchAdditionalDetails() {
+    const userDetailsQuery = githubQuery.formulateUserDetailsQuery(user);
+    setLoading(true);
+
+    githubQuery
+      .searchMany(userDetailsQuery)
+      .then((
+        [{ data: followersData }, { data: followingData }, { data: reposData }, { data: starredData }]
+      ) => {
+        setLoading(false);
+        setAdditionalDetails({ followersData, followingData, reposData, starredData })
+      })
+      .catch(e => {
+        setLoading(false);
+        setAdditionalDetailsError("Error fetching additional details");
+      });
+  }
+
   return (
     <div className={styles.userCard}>
       <span className={styles.userId}>{user.id}</span>
@@ -22,6 +35,17 @@ function UserCard({ user }) {
         <a href={user.url} target="_blank">API Data</a>
         <a href={user.html_url} target="_blank">Profile</a>
       </div>
+      <div className={styles.additionalDetails}>
+        <button
+          type="button"
+          onClick={fetchAdditionalDetails}
+        >
+          Load Additional Details
+        </button>
+      </div>
+      {additionalDetails && (
+        <AdditionalUserDetails additionalDetails={additionalDetails} />
+      )}
     </div>
   )
 }

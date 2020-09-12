@@ -20,9 +20,22 @@ class ApiQuery {
     return baseQuery;
   }
 
+  formulateUserDetailsQuery(user) {
+    return [
+      `https://api.github.com/users/${user.login}/followers`,
+      `https://api.github.com/users/${user.login}/following`,
+      `https://api.github.com/users/${user.login}/repos`,
+      `https://api.github.com/users/${user.login}/starred`
+    ].map(queryLink => axios.get(queryLink))
+  }
+
   search(formulatedQuery) {
     return axios.get(formulatedQuery);
   }
+
+  searchMany(formulatedQuery) {
+    return Promise.all(formulatedQuery);
+  }
 }
 
-export default ApiQuery;
+export default new ApiQuery();;
