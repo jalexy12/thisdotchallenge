@@ -39,7 +39,7 @@ function UserCard({ user, incQueryCount, rateLimited }) {
       setAdditionalDetails(cachedUserDetails);
     }
   }, [user.id]);
-  console.log(additionalDetails);
+
   return (
     <div className={styles.userCard}>
       <span className={styles.userId}>{user.id}</span>
