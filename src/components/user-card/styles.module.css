@@ -54,7 +54,16 @@
 
 .additionalUserDetails {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  padding: 1rem;
+  width: 100%;
+}
+
+.additionalUserDetails div {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
 @media only screen and (max-width: 450px) {

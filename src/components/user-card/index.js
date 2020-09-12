@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { DotLoader } from 'react-spinners';
 import githubQuery from '../../api-query';
 import AdditionalUserDetails from './additional-user-details';
 import styles from './styles.module.css';
@@ -35,16 +36,22 @@ function UserCard({ user }) {
         <a href={user.url} target="_blank">API Data</a>
         <a href={user.html_url} target="_blank">Profile</a>
       </div>
-      <div className={styles.additionalDetails}>
-        <button
-          type="button"
-          onClick={fetchAdditionalDetails}
-        >
-          Load Additional Details
-        </button>
-      </div>
+      {(!loading && !additionalDetails) && (
+        <div className={styles.additionalDetails}>
+          <button
+            type="button"
+            onClick={fetchAdditionalDetails}
+          >
+            Load Additional Details
+          </button>
+        </div>
+      )}
+      {loading && <DotLoader color="#FFFFFF" />}
       {additionalDetails && (
-        <AdditionalUserDetails additionalDetails={additionalDetails} />
+        <AdditionalUserDetails
+          user={user}
+          additionalDetails={additionalDetails}
+        />
       )}
     </div>
   )
