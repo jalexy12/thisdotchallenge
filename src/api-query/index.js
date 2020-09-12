@@ -39,10 +39,10 @@ class ApiQuery {
 
   formulateUserDetailsQuery(user) {
     return [
-      `https://api.github.com/users/${user.login}/followers`,
-      `https://api.github.com/users/${user.login}/following`,
-      `https://api.github.com/users/${user.login}/repos`,
-      `https://api.github.com/users/${user.login}/starred`
+      `https://api.github.com/users/${user.login}/followers?per_page=100`,
+      `https://api.github.com/users/${user.login}/following?per_page=100`,
+      `https://api.github.com/users/${user.login}/repos?per_page=100`,
+      `https://api.github.com/users/${user.login}/starred?per_page=100`
     ].map(queryLink => axios.get(queryLink))
   }
 

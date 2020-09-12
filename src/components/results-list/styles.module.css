@@ -2,6 +2,7 @@
   align-items: center;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .resultsList {
@@ -11,6 +12,7 @@
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 2rem 1rem;
+  width: 100%;
 }
 
 .noResults {
