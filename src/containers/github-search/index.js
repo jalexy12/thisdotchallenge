@@ -87,6 +87,11 @@ function GithubSearch() {
             fetchPrevious={fetchPage}
             fetchNext={fetchPage}
             incQueryCount={incQueryCount}
+            rateLimited={
+              rateLimitData &&
+              rateLimitData.core &&
+              !rateLimitData.core.remaining
+            }
           />
         )}
       </section>

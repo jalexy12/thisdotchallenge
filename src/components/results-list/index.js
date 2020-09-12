@@ -11,7 +11,8 @@ function ResultsList({
   perPage,
   fetchPrevious,
   fetchNext,
-  incQueryCount
+  incQueryCount,
+  rateLimited
 }) {
   const {
     currentPage,
@@ -36,7 +37,14 @@ function ResultsList({
       <div className={styles.resultsList}>
         {loading ?
           <PacmanLoader color="#FFFF00" /> :
-          results.items.map(user => <UserCard key={user.id} user={user} incQueryCount={incQueryCount} />)
+          results.items.map(user => (
+            <UserCard
+              key={user.id}
+              user={user}
+              incQueryCount={incQueryCount}
+              rateLimited={rateLimited}
+            />
+          ))
         }
       </div>
     </div>

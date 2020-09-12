@@ -5,7 +5,7 @@ import githubQuery from '../../api-query';
 import AdditionalUserDetails from './additional-user-details';
 import styles from './styles.module.css';
 
-function UserCard({ user, incQueryCount }) {
+function UserCard({ user, incQueryCount, rateLimited }) {
   const [loading, setLoading]                               = useState(false);
   const [additionalDetails, setAdditionalDetails]           = useState(null);
   const [additionalDetailsError, setAdditionalDetailsError] = useState(null);
@@ -49,7 +49,7 @@ function UserCard({ user, incQueryCount }) {
         <a href={user.url} target="_blank">API Data</a>
         <a href={user.html_url} target="_blank">Profile</a>
       </div>
-      {(!loading && !additionalDetails) && (
+      {(!loading && !additionalDetails && !rateLimited) && (
         <div className={styles.additionalDetails}>
           <button
             type="button"
@@ -60,6 +60,9 @@ function UserCard({ user, incQueryCount }) {
         </div>
       )}
       {loading && <DotLoader color="#FFFFFF" />}
+      {rateLimited && (
+        <span className={styles.requestLimit}>You've reached the request limit!</span>
+      )}
       {additionalDetails && (
         <AdditionalUserDetails
           user={user}
