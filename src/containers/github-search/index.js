@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { PacmanLoader } from 'react-spinners';
+import cache from '../../basic-cache';
 import ResultsList from '../../components/results-list';
 import SearchForm from '../../components/search-form';
 import githubQuery from '../../api-query';
@@ -7,7 +8,7 @@ import styles from './styles.module.css';
 
 const DEFAULT_PER_PAGE = 20;
 
-function GithubSearch({ cache }) {
+function GithubSearch() {
   const [loading, setLoading]             = useState(false);
   const [resultError, setResultError]     = useState(null);
   const [results, setResults]             = useState(null);

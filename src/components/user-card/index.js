@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DotLoader } from 'react-spinners';
+import cache from '../../basic-cache';
 import githubQuery from '../../api-query';
 import AdditionalUserDetails from './additional-user-details';
 import styles from './styles.module.css';
@@ -8,6 +9,8 @@ function UserCard({ user }) {
   const [loading, setLoading]                               = useState(false);
   const [additionalDetails, setAdditionalDetails]           = useState(null);
   const [additionalDetailsError, setAdditionalDetailsError] = useState(null);
+
+  const userCacheKey = `user-details:${user.id}`;
 
   function fetchAdditionalDetails() {
     const userDetailsQuery = githubQuery.formulateUserDetailsQuery(user);
@@ -19,6 +22,7 @@ function UserCard({ user }) {
         [{ data: followersData }, { data: followingData }, { data: reposData }, { data: starredData }]
       ) => {
         setLoading(false);
+        cache.set(userCacheKey, { followersData, followingData, reposData, starredData });
         setAdditionalDetails({ followersData, followingData, reposData, starredData })
       })
       .catch(e => {
@@ -26,6 +30,14 @@ function UserCard({ user }) {
         setAdditionalDetailsError("Error fetching additional details");
       });
   }
+
+  useEffect(() => {
+    const cachedUserDetails = cache.get(userCacheKey);
+
+    if (cachedUserDetails) {
+      setAdditionalDetails(cachedUserDetails);
+    }
+  }, [user.id]);
 
   return (
     <div className={styles.userCard}>
