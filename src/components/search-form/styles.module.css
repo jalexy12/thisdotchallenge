@@ -1,0 +1,52 @@
+.formContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.madeFor {
+  color: lightgray;
+  font-size: 0.8rem;
+}
+.madeFor img {
+  width: 75px;
+}
+
+.searchForm {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  width: 50%;
+}
+
+.searchForm input,
+.searchForm button {
+  border: 1px solid;
+  border-radius: 0.25rem;
+}
+
+.searchForm input {
+  padding: 0.5rem;
+}
+
+.searchForm button {
+  align-self: center;
+  background-color: #007bff;
+  border-color: #007bff;
+  color: white;
+  font-weight: bold;
+  margin-top: 1rem;
+  padding: 0.5rem 2rem;
+}
+
+.searchError {
+  color: red;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 450px) {
+  .searchForm {
+    width: 100%;
+  }
+}

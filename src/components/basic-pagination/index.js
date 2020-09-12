@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './styles.module.css';
 
 const BasicPagination = ({
   currentPage,
@@ -6,13 +7,13 @@ const BasicPagination = ({
   nextPage,
   previousPage
 }) => (
-  <div>
+  <div className={styles.pagination}>
     {currentPage > 1 && (
-      <button onClick={previousPage}>&lt;</button>
+      <button onClick={previousPage}><i className="fas fa-chevron-left"></i></button>
     )}
-    <span>{currentPage}..{totalPages}</span>&nbsp;
+    &nbsp;<span>{currentPage} of {totalPages}</span>&nbsp;
     {currentPage < totalPages && (
-      <button onClick={nextPage}>&gt;</button>
+      <button onClick={nextPage}><i className="fas fa-chevron-right"></i></button>
     )}
   </div>
 );

@@ -3,6 +3,7 @@ import { PacmanLoader } from 'react-spinners';
 import usePagination from '../../hooks/use-pagination';
 import BasicPagination from '../basic-pagination';
 import UserCard from '../user-card';
+import styles from './styles.module.css';
 
 function ResultsList({
   loading,
@@ -23,18 +24,20 @@ function ResultsList({
   }
 
   return (
-    <div>
+    <div className={styles.resultsContainer}>
       <h3>{results.total_count} results</h3>
-      {loading ?
-        <PacmanLoader /> :
-        results.items.map(user => <UserCard key={user.id} user={user} />)
-      }
       <BasicPagination
         currentPage={currentPage}
         totalPages={totalPages}
         nextPage={nextPage}
         previousPage={previousPage}
       />
+      <div className={styles.resultsList}>
+        {loading ?
+          <PacmanLoader color="#FFFF00" /> :
+          results.items.map(user => <UserCard key={user.id} user={user} />)
+        }
+      </div>
     </div>
   );
 }

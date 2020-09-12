@@ -1,0 +1,13 @@
+.resultsContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.resultsList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 2rem 1rem;
+}

@@ -3,6 +3,7 @@ import { PacmanLoader } from 'react-spinners';
 import ResultsList from '../../components/results-list';
 import SearchForm from '../../components/search-form';
 import ApiQuery from '../../api-query';
+import styles from './styles.module.css';
 
 const DEFAULT_PER_PAGE = 20;
 const githubQuery = new ApiQuery();
@@ -51,13 +52,15 @@ function GithubSearch({ cache }) {
   }
 
   return (
-    <>
+    <section className={styles.mainContainer}>
       <SearchForm
         onSubmit={onSubmit}
         disabled={loading}
       />
       {(!results && loading) && (
-        <PacmanLoader />
+        <div className={styles.loaderContainer}>
+          <PacmanLoader color="#FFFF00" />
+        </div>
       )}
       {results && (
         <ResultsList
@@ -68,7 +71,7 @@ function GithubSearch({ cache }) {
           fetchNext={fetchPage}
         />
       )}
-    </>
+    </section>
   )
 }
 

@@ -13,14 +13,15 @@ import styles from './styles.module.css';
 // url: "https://api.github.com/users/testerting"
 
 function UserCard({ user }) {
-  // console.log(user);
   return (
     <div className={styles.userCard}>
-      <span>{user.id}</span>
+      <span className={styles.userId}>{user.id}</span>
       <img src={user.avatar_url} />
-      <span>{user.login}</span>
-      <a href={user.url}>API Data</a>
-      <a href={user.html_url} target="_blank">Profile</a>
+      <span className={styles.userLogin}>{user.login}</span>
+      <div className={styles.linksRow}>
+        <a href={user.url} target="_blank">API Data</a>
+        <a href={user.html_url} target="_blank">Profile</a>
+      </div>
     </div>
   )
 }

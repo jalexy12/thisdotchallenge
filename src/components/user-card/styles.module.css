@@ -1,4 +1,50 @@
+.userCard {
+  align-items: center;
+  background-color: #122541;
+  color:rgb(194, 206, 224);
+  box-shadow: 0 0px 2px 0px #777;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 31%;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.userCard .userId {
+  align-self: flex-end;
+  font-size: 0.5rem;
+}
+
+.userCard .userLogin {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 1rem 0;
+}
+
+.userCard .linksRow {
+  display: flex;
+  flex-direction: row;
+}
+
+.userCard .linksRow a {
+  color: #03BFFE;
+  text-decoration: none;
+}
+
+.userCard .linksRow a:first-child {
+  margin-right: 1rem;
+}
+
 .userCard img {
+  border-radius: 50%;
   height: 125px;
   width: 125px;
+}
+
+
+@media only screen and (max-width: 450px) {
+  .userCard {
+    flex-basis: 100%;
+  }
 }
